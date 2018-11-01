@@ -1,18 +1,6 @@
 import socket
 import threading
 
-cs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-cs.connect(("localhost", 1234))
-
-ss = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-ss.bind((socket.gethostname(), 80))
-ss.listen(5)
-
-while 1:
-  client, address = ss.accept()
-  ct = client_thread(client)
-  ct.start()
-
 def get_my_ip_address(use_ipv6=True):
   payload = b"""GET / HTTP/1.1\nHost: ifconfig.co\nUser-Agent: curl/7.54.0\nAccept: */*\n"""
   s = socket.socket(socket.AF_INET6 if use_ipv6 else socket.AF_INET, socket.SOCK_STREAM)
